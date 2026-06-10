@@ -36,4 +36,28 @@ document.addEventListener('DOMContentLoaded', function() {
     var qtd  = document.getElementById('input-quantidade').value;
     var msg  = document.getElementById('mensagem');
 
-})});
+  if (!nome || !qtd) {
+      msg.textContent = 'Faz direito ai, coloca o nome e a quantidade de novo.';
+      return;
+    }
+
+    var item = {
+      produto: nome,
+      quantidadeEstoque: Number(qtd),
+      dataEntrada: new Date().toISOString().split('T')[0]
+    };
+    
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
+    }).then(function() {
+      msg.textContent = 'Material cadastrado na Lista abaixo! TMJ';
+      document.getElementById('input-nome').value = '';
+      document.getElementById('input-quantidade').value = '';
+      carregarMateriais();
+    });
+  });
+
+  carregarMateriaisManeiros();
+});
