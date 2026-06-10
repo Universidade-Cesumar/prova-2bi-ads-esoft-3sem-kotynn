@@ -2,12 +2,15 @@
 
 const API_URL = 'https://6a1f56a9b79eec0d6cf0a932.mockapi.io/api/v1/users';
 
+
+// Função maneira p/ validar se a quantidade do estoque é 0
 function validarRetirada(estoque, quantidade) {
   if (quantidade <= 0) return false;
   if (quantidade > estoque) return false;
   return true;
 }
 
+// função maneira    para verifacar/adcionar conteuto do usario
 function carregarMateriaisManeiros(){
 fetch(API_URL)
     .then(function(res) { return res.json(); })
@@ -27,4 +30,10 @@ fetch(API_URL)
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-cadastrar').addEventListener('click', function() {
+    var nome = document.getElementById('input-nome').value;
+    var qtd  = document.getElementById('input-quantidade').value;
+    var msg  = document.getElementById('mensagem');
 
+})});
