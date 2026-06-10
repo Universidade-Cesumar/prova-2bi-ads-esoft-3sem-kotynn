@@ -79,3 +79,41 @@ button {
   margin-top: 14px;
 }
 button:hover { background: #333; }
+
+#mensagem {
+  font-size: 13px;
+  margin-top: 10px;
+  min-height: 18px;
+}
+#mensagem.ok  { color: #2e7d32; }
+#mensagem.err { color: #c0392b; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead tr { background: #f5f5f5; }
+th {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: #999;
+  border-bottom: 1px solid #e0e0e0;
+}
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #222;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafafa; }
+
+.vazio {
+  text-align: center;
+  color: #bbb;
+  padding: 30px;
+}
