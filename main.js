@@ -7,3 +7,9 @@ function validarRetirada(estoque, quantidade) {
   if (quantidade > estoque) return false;
   return true;
 }
+
+function carregarMateriaisManeiros(){
+
+}
+
+
