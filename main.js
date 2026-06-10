@@ -9,7 +9,22 @@ function validarRetirada(estoque, quantidade) {
 }
 
 function carregarMateriaisManeiros(){
-
+fetch(API_URL)
+    .then(function(res) { return res.json(); })
+    .then(function(dados){
+      var html = '';
+      for (var i = 0; i < dados.length; i++) {
+        var item = dados[i];
+        html += '<tr>';
+        html += '<td>' + (i + 1) + '</td>';
+        html += '<td>' + (item.produto || '—') + '</td>';
+        html += '<td>' + (item.quantidadeEstoque || 0) + '</td>';
+        html += '<td>' + (item.dataEntrada || '—') + '</td>';
+        html += '</tr>';
+      }
+      const lista = document.getElementById('lista-materiais');
+      lista.innerHTML = html || '<tr><td colspan="4" class="vazio">Não tem nenhum item cadastrado.</td></tr>';
+    });
 }
 
 
