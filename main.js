@@ -53,7 +53,12 @@ function registrarBaixa(id, estoqueAtual) {
 }
 
 function excluirItem(id) {
-  
+  if (!confirm('Você deseja excluir mesmo este item??')) return;
+
+  fetch(API_URL + '/' + id, { method: 'DELETE' })
+    .then(function() {
+      carregarMateriais();
+    });
 }
 
 
