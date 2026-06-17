@@ -21,7 +21,8 @@ function carregarMateriais() {
         html += '</tr>';
         html += '<button class="btn-baixar" onclick="registrarBaixa(\'' + item.id + '\',' + (item.quantidadeEstoque || 0) + ')">Baixa</button> ';
         html += '<button class="btn-excluir" onclick="excluirItem(\'' + item.id + '\')">Excluir</button>';
-
+        html += '</td>';
+        html += '</tr>';
       }
       var lista = document.getElementById('lista-materiais');
       lista.innerHTML = html || '<tr><td colspan="4" class="vazio">Nenhum item cadastrado.</td></tr>';
