@@ -1,11 +1,13 @@
 var API_URL = 'https://6a1f56a9b79eec0d6cf0a932.mockapi.io/api/v1/users';
 
+// validação p/ ver se a retirada pode ser feita
 function validarRetirada (estoqueAtual, quantidadeRetirada){
   if (quantidadeRetirada <= 0) return false;
   if (quantidadeRetirada > estoqueAtual) return false;
   return true;
 }
 
+// Tabela de Materiais
 function carregarMateriais() {
   fetch(API_URL)
     .then(function(res) { return res.json(); })
@@ -28,6 +30,11 @@ function carregarMateriais() {
       lista.innerHTML = html || '<tr><td colspan="4" class="vazio">Nenhum item cadastrado.</td></tr>';
     });
 }
+
+// Função p/ a subtração de retirada maneira
+function registrarBaixa(id, estoqueAtual) {
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('btn-cadastrar').addEventListener('click', function() {
