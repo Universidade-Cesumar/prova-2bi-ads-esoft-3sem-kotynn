@@ -37,9 +37,19 @@ function registrarBaixa(id, estoqueAtual) {
   var qtd = Number(retiradaEl.value);
 
   if (!validarRetirada(estoqueAtual, qtd)) {
-    alert('Quantidade inválida ou maior que o estoque disponível (' + estoqueAtual + ').');
+    alert('Quantidade invalida ou maior que o estoque disponivel (' + estoqueAtual + ').');
     return;
   }
+
+  fetch(API_URL + '/' + id, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ quantidadeEstoque: estoqueAtual - qtd })
+  }).then(function() {
+    retiradaEl.value = '';
+    carregarMateriais();
+  });
+  
 }
 
 
