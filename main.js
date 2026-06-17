@@ -20,6 +20,7 @@ function carregarMateriais() {
         html += '<td>' + (item.dataEntrada || '—') + '</td>';
         html += '</tr>';
         html += '<button class="btn-baixar" onclick="registrarBaixa(\'' + item.id + '\',' + (item.quantidadeEstoque || 0) + ')">Baixa</button> ';
+        html += '<button class="btn-excluir" onclick="excluirItem(\'' + item.id + '\')">Excluir</button>';
 
       }
       var lista = document.getElementById('lista-materiais');
