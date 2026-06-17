@@ -33,6 +33,13 @@ function carregarMateriais() {
 
 // Função p/ a subtração de retirada maneira
 function registrarBaixa(id, estoqueAtual) {
+  var retiradaEl = document.getElementById('input-retirada');
+  var qtd = Number(retiradaEl.value);
+
+  if (!validarRetirada(estoqueAtual, qtd)) {
+    alert('Quantidade inválida ou maior que o estoque disponível (' + estoqueAtual + ').');
+    return;
+  }
 }
 
 
