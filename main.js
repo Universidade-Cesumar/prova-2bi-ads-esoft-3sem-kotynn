@@ -49,6 +49,10 @@ function registrarBaixa(id, estoqueAtual) {
     retiradaEl.value = '';
     carregarMateriais();
   });
+
+}
+
+function excluirItem(id) {
   
 }
 
