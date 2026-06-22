@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang=pt-br'>
+<html lang="pt-br">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prova do Leo</title>
-    <link rel='stylesheet' href='style.css'>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -13,24 +13,22 @@
     </header>
     <main>
             <!-- Criando dashboard maneiro -->
-            <section id= "dashboard">
+            <section id="dashboard">
                 <h2>dashboard</h2>
-                <p> Total de Itens: <strong id= "total-itens">27</strong></p>
-            </section>
+                <p> Total de Itens: <strong id="total-itens">27</strong></p>
 
+                <label for="input-busca">Buscar Material</label>
+                <input type="text" id="input-busca" placeholder="Digite o nome do material...">
+            </section>
             <section>
                 <h2>Cadastrar Material</h2>
-
                 <label for="input-nome">Nome do Material</label>
                 <input type="text" id="input-nome" placeholder="Ex: Luvas de procedimento">
-
                 <label for="input-quantidade">Quantidade no estoque</label>
                 <input type="number" id="input-quantidade" placeholder="Ex: 100" min="0">
-
                 <button id="btn-cadastrar">Cadastrar no Inventário</button>
                 <p id="mensagem"></p>
             </section>
-
             <section>
                 <h2>Inventário</h2>
                 <label for="input-retirada">Quantidade a retirar</label>
@@ -42,7 +40,7 @@
                     <th>Material</th>
                     <th>Quantidade</th>
                     <th>Cadastro</th>
-                    <th>Ações</tr>
+                    <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="lista-materiais">
@@ -52,6 +50,5 @@
             </section>
 </main>
 <script src="main.js"></script>
-
 </body>
 </html>
