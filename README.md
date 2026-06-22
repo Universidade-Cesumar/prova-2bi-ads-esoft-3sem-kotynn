@@ -1,47 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/B74p-HKt)
+# Sistema de Estoque - Enfermagem
 
-# Sistema de Estoque — Enfermagem
-SENAC Zona Norte | Responsável: Enfermeira Camila
+🔗 **Projeto rodando na nuvem:** [COLOQUE AQUI O LINK DO SEU DEPLOY (GitHub Pages ou Vercel)]
 
-## Sobre
-Sistema web simples para controle de insumos do almoxarifado, desenvolvido como projeto acadêmico.
+> ⚠️ Substitua o link acima pela URL real depois de publicar o projeto. Sem esse link, o item "Deploy e Documentação" da rubrica não é cumprido.
+
+## Sobre o projeto
+
+Sistema simples de controle de estoque de materiais de enfermagem, desenvolvido em HTML, CSS e JavaScript puro (vanilla JS), consumindo uma API REST (MockAPI) para cadastro, listagem, baixa e exclusão de itens.
+
+Responsável pelo estoque: Enfermeira Camila.
 
 ## Funcionalidades
-- Cadastrar materiais no inventário
-- Listar todos os materiais cadastrados
-- Registrar baixa (saída) de estoque, com validação de quantidade
-- Excluir materiais do inventário
+
+- **Cadastro de materiais**: nome e quantidade em estoque.
+- **Dashboard**: exibe o total de itens cadastrados (`#total-itens`), atualizado dinamicamente a partir da API.
+- **Barra de pesquisa** (`#input-busca`): filtra a tabela de inventário pelo nome do material em tempo real.
+- **Alerta visual de estoque crítico**: itens com menos de 10 unidades recebem a classe `.estoque-critico`, destacando a linha em vermelho na tabela.
+- **Baixa de estoque**: retira uma quantidade do item, validando se a retirada é possível (`validarRetirada`).
+- **Exclusão de itens**, com confirmação antes de excluir.
+- **Tratamento de erros**: todas as requisições à API (`fetch`) estão dentro de blocos `try/catch`, exibindo mensagens de erro na tela em vez de falhar silenciosamente caso não haja conexão com a internet.
 
 ## Tecnologias
-- HTML, CSS e JavaScript puro
-- MockAPI (banco de dados na nuvem)
 
-## Como usar
-1. Baixe os três arquivos: `index.html`, `style.css` e `main.js`
-2. Coloque todos na mesma pasta
-3. Abra o `index.html` no navegador
+- HTML5
+- CSS3
+- JavaScript (ES2017+, usando `async/await`)
+- API REST: [MockAPI](https://mockapi.io/)
 
-## Estrutura
+## Como executar localmente
+
+1. Baixe ou clone os arquivos (`index.html`, `main.js`, `style.css`).
+2. Abra o arquivo `index.html` diretamente no navegador, ou use uma extensão como o "Live Server" no VS Code.
+3. Não é necessário nenhum servidor backend: o projeto consome a API pública diretamente do front-end.
+
+## Estrutura dos arquivos
+
 ```
-├── index.html   (estrutura da página)
-├── style.css    (estilização)
-└── main.js      (lógica e conexão com a API)
+├── index.html   → estrutura da página (dashboard, formulário, tabela)
+├── main.js      → lógica de busca na API, cadastro, baixa, exclusão e busca
+├── style.css    → estilos, incluindo o alerta visual de estoque crítico
+└── README.md    → este arquivo
 ```
-
-## Progresso
-
-### Sprint 1 — Fundação, API e Inventário 
-Primeira sprint do projeto/prova. O HTML foi mantido simples, porém contém tudo o que foi pedido no documento do Classroom, com a funcionalidade de cadastrar produtos usando a MockAPI junto com o JSON de produtos da enfermagem.
-
-- Estrutura HTML com os IDs obrigatórios (`input-nome`, `input-quantidade`, `btn-cadastrar`, `lista-materiais`)
-- Conexão POST: cadastro de novos materiais na MockAPI
-- Conexão GET: listagem dinâmica do inventário ao carregar a página
-
-### Sprint 2 — Regras de Negócio e Saídas 
-Segunda sprint, focada no módulo de retirada (baixa de estoque) e exclusão de materiais, com validação para impedir números negativos ou maiores que o estoque disponível.
-
-- Campo `input-retirada` para informar a quantidade a retirar
-- Botões `.btn-baixar` e `.btn-excluir` gerados dinamicamente para cada item da lista
-- Função `validarRetirada(estoqueAtual, quantidadeRetirada)` que bloqueia operações inválidas
-- Conexão PUT: a baixa subtrai o valor correto e atualiza o dado no MockAPI
-- Conexão DELETE: a exclusão remove o item do MockAPI e da tela
