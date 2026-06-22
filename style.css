@@ -105,11 +105,17 @@ tr:hover td { background: #fafafa; }
   padding: 30px;
 }
 
-/* Alerta visual de estoque baixo (Sprint 3) */
+
 .estoque-critico {
   background: #fdecea;
 }
 .estoque-critico td {
   color: #c0392b;
   font-weight: 600;
+}
+
+
+.btn-excluir.confirmando {
+  background: #c0392b;
+  color: #fff;
 }
