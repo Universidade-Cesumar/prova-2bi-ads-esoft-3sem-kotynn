@@ -1,18 +1,14 @@
 var API_URL = 'https://6a1f56a9b79eec0d6cf0a932.mockapi.io/api/v1/users';
-
-// Cache local dos materiais, usado para filtrar a busca sem precisar
-// chamar a API de novo a cada letra digitada
 var materiaisCache = [];
 
-// Função obrigatória do contrato: valida se a retirada pode ser feita
+// Função p a valdação
 function validarRetirada(estoqueAtual, quantidadeRetirada) {
   if (quantidadeRetirada <= 0) return false;
   if (quantidadeRetirada > estoqueAtual) return false;
   return true;
 }
 
-// Monta as linhas da tabela a partir de uma lista de materiais.
-// Itens com estoque menor que 10 recebem a classe "estoque-critico"
+// criação da tabela
 function renderLista(dados) {
   var html = '';
   for (var i = 0; i < dados.length; i++) {
@@ -27,7 +23,7 @@ function renderLista(dados) {
     html += '<td>' + (item.dataEntrada || '—') + '</td>';
     html += '<td>';
     html += '<button class="btn-baixar" onclick="registrarBaixa(\'' + item.id + '\',' + qtd + ')">Baixa</button> ';
-    html += '<button class="btn-excluir" onclick="excluirItem(\'' + item.id + '\')">Excluir</button>';
+    html += '<button class="btn-excluir" onclick="confirmarExclusao(this,\'' + item.id + '\')">Excluir</button>';
     html += '</td>';
     html += '</tr>';
   }
@@ -86,10 +82,31 @@ async function registrarBaixa(id, estoqueAtual) {
   }
 }
 
-// Função para fazer a exclusão dos itens
-async function excluirItem(id) {
-  if (!confirm('Deseja excluir este item?')) return;
+// Controla quais itens estão com exclusão "armada" esperando confirmação
+var exclusaoPendente = {};
 
+
+function confirmarExclusao(botao, id) {
+  if (exclusaoPendente[id]) {
+    clearTimeout(exclusaoPendente[id]);
+    delete exclusaoPendente[id];
+    excluirItem(id);
+    return;
+  }
+
+  var textoOriginal = botao.textContent;
+  botao.textContent = 'Confirmar?';
+  botao.classList.add('confirmando');
+
+  exclusaoPendente[id] = setTimeout(function() {
+    botao.textContent = textoOriginal;
+    botao.classList.remove('confirmando');
+    delete exclusaoPendente[id];
+  }, 3000);
+}
+
+// Função p a exclusão dos itens
+async function excluirItem(id) {
   try {
     await fetch(API_URL + '/' + id, { method: 'DELETE' });
     carregarMateriais();
@@ -132,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Barra de pesquisa
+  // Barra de pesquisa massa
   var buscaEl = document.getElementById('input-busca');
   if (buscaEl) {
     buscaEl.addEventListener('input', function() {
