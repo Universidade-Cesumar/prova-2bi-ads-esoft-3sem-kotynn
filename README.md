@@ -1,6 +1,6 @@
 # Sistema de Estoque - Enfermagem
 
-🔗 **Projeto rodando na nuvem:** [COLOQUE AQUI O LINK DO SEU DEPLOY (GitHub Pages ou Vercel)]
+🔗 **Projeto rodando na nuvem:** (https://universidade-cesumar.github.io/prova-2bi-ads-esoft-3sem-kotynn/)
 
 > ⚠️ Substitua o link acima pela URL real depois de publicar o projeto. Sem esse link, o item "Deploy e Documentação" da rubrica não é cumprido.
 
